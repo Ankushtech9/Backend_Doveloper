@@ -1,0 +1,32 @@
+const fs = require('node:fs');
+1.writeFile(), appendFile(),unlink(),stat(),mkdir,rmdir,
+
+fs.stat("hey.txt", "hello aap sabhi log", function(err){ 
+    if(err) console.log(err,stats);
+    else console.log(stats.isFile()); // stat check for file exit or not, isfile for true or false;
+})
+fs.mkdir("./folder/hey", function(err){ // relative path and absolute path is c:/folder/remove
+    if(err) console.log(err);
+    else console.log("done");
+})
+fs.mkdir("./folder/hey",{recursive:true}, function(err){ // relative path and absolute path is c:/folder/remove
+    if(err) console.log(err);
+    else console.log("done");
+})
+fs.rmdir("./folder/hey",{recursive:true}, function(err){ // relative path and absolute path is c:/folder/remove
+    if(err) console.log(err);
+    else console.log("done");
+})
+fs.rename("hey.txt", " new.txt",function(err){ // rename file
+    if(err) console.log(err);
+    else console.log("done");
+})
+
+
+fs.writefile("./file.txt","hello new file",(err)=>{
+    if(err){
+        console.log(err);
+    }else{
+        console.log("not error");
+    }
+})
