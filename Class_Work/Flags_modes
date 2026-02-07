@@ -1,0 +1,29 @@
+fs.writefile("./file.txt","hello new file",{flag:"a"},(err)=>{ // a, r , w
+    if(err){
+        console.log(err);
+    }else{
+        console.log("not error");
+    }
+})
+fs.writefile("./file.txt","hello new file",{flag:"r+"},(err)=>{ // r+ read -write  , ye jitne letter honge unke upper overwrite karta hai.
+    // r+ file pehle se bani honi chaiye
+    if(err){
+        console.log(err);
+    }else{
+        console.log("not error");
+    }
+})
+fs.writefile("./file.txt","hello new file",{flag:"w+" , mode:0o600},(err)=>{ // w+ read -write  , ye jitne letter honge unke upper overwrite karta hai.
+    // file banata hai aur write karta hai wo data lost nhi karta hai. a+= read and append both can do 
+    if(err){
+        console.log(err);
+    }else{
+        console.log("not error");
+    }
+})
+wx file write karta hai , if exist to nhi banegi , file nhi banati to banata 
+mode:
+user, group, other,  4, 2, 1
+fs.writeFile("./new.txt","hi",{flag:"a+"},(err)=>{
+    if(err) console.log(err);
+    else console.log("not error");POIIKIOKPL,;./'.,LKGTFRDFGJK,ML;.' })
