@@ -1,0 +1,14 @@
+const http=require("http");
+const server = http.createServer((req, res) => {
+    const method=req.method;
+    const url =new URL(req.url,`http://${req.headers.host}`);
+    const query =url.searchParams;
+    if (method === "GET" && url.pathname.startsWith("/users")) {
+    res.end("hello world!");
+  }
+  if(method==="get" && url.pathname.startsWith("/products")){
+    res.end("hello products");
+  }
+});
+server.listen(3000,() => {console.log("Server is running on http://localhost:3000");
+});
