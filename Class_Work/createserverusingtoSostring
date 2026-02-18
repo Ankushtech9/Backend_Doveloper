@@ -1,0 +1,21 @@
+const http = require("http");
+const fs = require("fs");
+const path = require("path");
+
+const filePath = path.join(__dirname, 'log.txt');
+
+const server = http.createServer((req,res) => {
+    const url = new URL(req.url,`http://${req.headers.host}`);
+    const pathname = url.pathname;
+    const method = req.method;
+    const newlog = new Date().toISOString() +" " + pathname +" " + req.method;
+    fs.appendFile(filePath, newlog , () => {
+        res.writeHead(201, 'created');
+        res.end()
+    })
+});
+
+
+server.listen(3000 , () => {
+    console.log("server running on http://localhost:3000");
+})
