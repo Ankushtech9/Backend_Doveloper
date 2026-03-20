@@ -1,0 +1,25 @@
+const express=require("express");
+const app=express();
+// app.use((req,res,next)=>{
+//   console.log("",req.url); // global speacific
+// })
+app.use((req, res, next)=>{
+   console.log("",req.url);
+   next();
+   
+  })
+// app.get("/add",(req,res)=>{
+//   console.log(req.query);
+//   // next();
+//   res.send(parseInt(req.query.a)+ parseInt(req.query.b));
+// })
+app.get("/sum",(req,res)=>{
+  console.log("re", req.query);
+  const a = req.query.a;
+  const b = req.query.b;
+
+  res.send(`Sum = ${Number(a) + Number(b)}`);
+})
+app.listen(3000, ()=>{
+  console.log("server run");
+})
