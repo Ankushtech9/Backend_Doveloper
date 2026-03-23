@@ -1,0 +1,38 @@
+const express=require("express"); // express fnction retur karta ai
+const fs=require("fs");
+const app=express(); // app ob. ise proporites ad etod ote , express, iddleware,rote , api adle
+app.use(express.json());
+const path=require("path");
+const filepath=path.join(__dirname,"notes.json");
+function read(){
+  const data=fs.readFileSync(filepath,"utf-8");
+  return JSON.parse(data);
+
+}
+function write(notes){
+  fs.writeFileSync(filepath,JSON.stringify(notes,null,2))
+}
+app.get("/add",(req,res)=>{ // cotroller fctio kate ai
+  const n=read();
+  res.json(n);     // ob ko atomatic covert kar dega pir de dega
+})
+app.post("/put",(req,res)=>{
+  const n=read();
+  const note={
+    id:Date.now(),
+    name:req.body.text
+  }
+  n.push(note);
+  write(n);
+  res.json(note);
+})
+app.delete("/delete/:id",(req,res)=>{
+  const nn=read();
+  const id=parseInt(req.params.id);
+  const fileter=nn.filter(notesss=>notesss.id !==id);
+  write(fileter);
+  res.json("send him");
+})
+app.listen(3000,()=>{
+  console.log("server start");
+})
