@@ -1,0 +1,117 @@
+// 1
+let a=[10,20,30,40]
+for(let i of a) console.log(i)
+
+// 2
+let b=[1,2,3,4]
+let s=0
+for(let i of b) s+=i
+console.log(s)
+console.log(b.reduce((x,y)=>x+y,0))
+
+// 3
+let c=[5,1,9,3]
+let m=c[0]
+for(let i of c) if(i>m) m=i
+console.log(m)
+
+// 4
+let d=[7,3,9,0]
+console.log(d.reduce((x,y)=>y<x?y:x,Infinity))
+
+// 5
+let e=[1,2,3]
+let r=[]
+for(let i=e.length-1;i>=0;i--) r.push(e[i])
+console.log(r)
+
+// 6
+let f=[1,2,2,3,1]
+let u=[]
+for(let i of f) if(!u.includes(i)) u.push(i)
+console.log(u)
+
+// 7
+let g=['a','b','a','c']
+let o={}
+for(let i of g) o[i]=(o[i]||0)+1
+console.log(o)
+
+// 8
+let h=[1,[2,3],4]
+let j=[]
+for(let i of h) Array.isArray(i)?j.push(...i):j.push(i)
+console.log(j)
+
+// 9
+let k=[1,2,3,4],p=1
+p=p%k.length
+console.log([...k.slice(-p),...k.slice(0,-p)])
+
+// 10
+let l=[1,2,3,4,5],n=2
+let q=[]
+for(let i=0;i<l.length;i+=n) q.push(l.slice(i,i+n))
+console.log(q)
+
+// 11
+let t=[0,1,false,2,'',3,null]
+console.log(t.filter(Boolean))
+
+// 12
+let v=['a','b','c'],x='b'
+let y=-1
+for(let i=0;i<v.length;i++) if(v[i]===x){y=i;break}
+console.log(y)
+
+// 13
+let z=[1,2],aa=[3,4]
+console.log([...z,...aa])
+
+// 14
+let ab=[1,2],ac=[10,20]
+let ad=[]
+let ae=Math.max(ab.length,ac.length)
+for(let i=0;i<ae;i++){
+ if(i<ab.length) ad.push(ab[i])
+ if(i<ac.length) ad.push(ac[i])
+}
+console.log(ad)
+
+// 15
+let af=[1,2,3,4],ag=2
+let ah=[]
+let ai=0
+for(let i=0;i<ag;i++) ai+=af[i]
+ah.push(ai)
+for(let i=ag;i<af.length;i++){
+ ai+=af[i]-af[i-ag]
+ ah.push(ai)
+}
+console.log(ah)
+
+// 16
+let aj=3,ak=6
+let al=[]
+for(let i=aj;i<=ak;i++) al.push(i)
+console.log(al)
+
+// 17
+let am=[1,2,3],an=1
+console.log([...am.slice(0,an),...am.slice(an+1)])
+
+// 18
+let ao=[5,12,8,20]
+let ap=ao.filter(i=>i>10).length
+console.log(ap)
+
+// 19
+let aq=[3,1,2,3,2]
+let ar=[...new Set(aq)].sort((a,b)=>a-b)
+console.log(ar)
+
+// 20
+let as=['a','b']
+let at={}
+for(let i=0;i<as.length;i++) at[i]=as[i]
+console.log(at)
