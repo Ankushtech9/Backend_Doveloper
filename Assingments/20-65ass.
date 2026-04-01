@@ -1,0 +1,160 @@
+const o1 = { name: 'Aman', age: 22 };
+for (let k in o1) if (Object.prototype.hasOwnProperty.call(o1, k)) console.log(k, o1[k]);
+Object.keys(o1).forEach(k => console.log(k, o1[k]));
+
+const o2 = { name: 'Aman' };
+const n2 = { ...o2, role: 'admin' };
+console.log(n2);
+
+const o3 = { name: 'A', password: 'x' };
+const { password: p3, ...r3 } = o3;
+console.log(r3);
+
+const a4 = { x: 1 }, b4 = { y: 2 };
+console.log({ ...a4, ...b4 });
+
+const o5 = { a: 1, b: 2 };
+const r5 = Object.entries(o5).reduce((a, [k, v]) => (a[v] = k, a), {});
+console.log(r5);
+
+const o6 = { a: { b: 2 } };
+console.log(JSON.parse(JSON.stringify(o6)));
+
+const o7 = { a: 1, b: 2 };
+console.log(Object.keys(o7).length);
+
+const o8 = { name: 'A' };
+const { name: n8, role: r8 = 'user' } = o8;
+console.log(n8, r8);
+
+const o9 = { id: 1, name: 'A', email: 'a@x' }, ks9 = ['id', 'email'];
+const r9 = ks9.reduce((a, k) => (k in o9 && (a[k] = o9[k]), a), {});
+console.log(r9);
+
+const o10 = { user: 'A', password: 'x' };
+const { password: p10, ...r10 } = o10;
+console.log(r10);
+
+const u11 = { name: 'A', address: { city: 'Old', zip: 123 } };
+console.log({ ...u11, address: { ...u11.address, city: 'New' } });
+
+const o12 = { fullName: 'A', age: 20 };
+const { fullName: f12, ...r12 } = o12;
+console.log({ name: f12, ...r12 });
+
+const d13 = { retries: 3 }, c13 = { timeout: 100 };
+console.log({ ...d13, ...c13 });
+
+console.log(Object.keys({}).length === 0);
+
+const us = [
+  { id: 1, name: "Aman", age: 22, isActive: true },
+  { id: 2, name: "Riya", age: 17, isActive: false },
+  { id: 3, name: "Rahul", age: 25, isActive: true },
+  { id: 4, name: "Neha", age: 19, isActive: false }
+];
+
+const os = [
+  { id: 1, userId: 1, total: 500, status: "completed" },
+  { id: 2, userId: 2, total: 300, status: "pending" },
+  { id: 3, userId: 1, total: 200, status: "completed" },
+  { id: 4, userId: 3, total: 700, status: "completed" }
+];
+
+const r35 = os.reduce((a, o) => (a[o.userId] = (a[o.userId] || 0) + o.total, a), {});
+console.log(r35);
+
+console.log(os.filter(o => o.status === 'completed'));
+
+const m37 = Object.fromEntries(us.map(u => [u.id, u]));
+console.log(os.map(o => ({ ...o, userName: m37[o.userId]?.name || null })));
+
+const r38 = os.reduce((a, o) => ((a[o.userId] = a[o.userId] || []).push(o), a), {});
+console.log(r38);
+
+console.log([...os].sort((a, b) => b.total - a.total).slice(0, 2));
+
+const t40 = os.reduce((a, o) => ((a[o.userId] = a[o.userId] || { s: 0, c: 0 }), a[o.userId].s += o.total, a[o.userId].c++, a), {});
+console.log(Object.fromEntries(Object.entries(t40).map(([k, v]) => [k, v.s / v.c])));
+
+const s41 = new Set(os.map(o => o.userId));
+console.log(us.filter(u => s41.has(u.id)).map(u => u.name));
+
+console.log(us.filter(u => !s41.has(u.id)).map(u => u.name));
+
+const f43 = (p, l, arr) => ({ page: p, totalPages: Math.ceil(arr.length / l), data: arr.slice((p - 1) * l, p * l) });
+console.log(f43(1, 2, os));
+
+console.log(us.filter(u => u.name.toLowerCase().includes('am')));
+
+const r45 = os.reduce((a, o) => (a[o.status] = (a[o.status] || 0) + 1, a), {});
+console.log(r45);
+
+console.log(os.map(o => o.id === 2 ? { ...o, status: 'completed' } : o));
+
+console.log(os.map(o => o.id === 3 ? { ...o, deleted: true } : o));
+
+const m48 = os.reduce((a, o) => ((a[o.userId] = a[o.userId] || { to: 0, ts: 0 }), a[o.userId].to++, a[o.userId].ts += o.total, a), {});
+console.log(us.map(u => ({ userId: u.id, name: u.name, totalOrders: m48[u.id]?.to || 0, totalSpent: m48[u.id]?.ts || 0 })));
+
+const t49 = os.reduce((a, o) => (a[o.userId] = (a[o.userId] || 0) + o.total, a), {});
+const sum49 = Object.values(t49).reduce((a, v) => a + v, 0);
+console.log(Object.fromEntries(Object.entries(t49).map(([k, v]) => [k, +((v / sum49) * 100).toFixed(2)])));
+
+console.log(os.map(o => ({ id: o.id, total: o.total })));
+
+console.log(os.map(o => {
+  const tax = +(o.total * 0.18).toFixed(2);
+  return { ...o, tax, grandTotal: +(o.total + tax).toFixed(2) };
+}));
+
+console.log(os.map(o => o.status === 'completed' ? { ...o, total: +(o.total * 1.1).toFixed(2) } : o));
+
+console.log(os.filter(o => !o.id || !o.userId || !o.total));
+
+const inc54 = [{ id: 1, userId: 1, total: 600, status: 'completed' }];
+const m54 = {};
+[...os, ...inc54].forEach(o => m54[o.id] = o);
+console.log(Object.values(m54).sort((a, b) => a.id - b.id));
+
+console.log(us.reduce((a, u) => ((u.isActive ? a.active : a.inactive).push(u), a), { active: [], inactive: [] }));
+
+console.log(us.filter(u => u.isActive && u.age >= 18));
+
+console.log(us.reduce((a, u) => {
+  const k = u.age < 18 ? '<18' : u.age <= 24 ? '18-24' : '25+';
+  a[k] = (a[k] || 0) + 1;
+  return a;
+}, {}));
+
+console.log(Object.fromEntries(us.map(u => [u.id, u])));
+
+const t59 = os.reduce((a, o) => (a[o.userId] = (a[o.userId] || 0) + o.total, a), {});
+const um59 = Object.fromEntries(us.map(u => [u.id, u.name]));
+console.log(Object.entries(t59).sort((a, b) => b[1] - a[1]).slice(0, 2).map(([id]) => um59[id]));
+
+console.log([...new Set(os.map(o => o.status))]);
+
+const os61 = [{ id: 1, products: [{ productId: 5, qty: 2 }] }];
+console.log(os61.flatMap(o => o.products.map(p => ({ orderId: o.id, productId: p.productId, qty: p.qty }))));
+
+const w62 = { completed: 1, pending: 0.5 };
+console.log(os.reduce((a, o) => (a[o.userId] = (a[o.userId] || 0) + o.total * w62[o.status], a), {}));
+
+const h63 = ['id', 'name'];
+const rows63 = us.map(u => `${u.id},${u.name}`).join('\n');
+console.log(h63.join(',') + '\n' + rows63 + '\n');
+
+const ps64 = [{ userId: 1, theme: 'dark' }];
+const pm64 = Object.fromEntries(ps64.map(p => [p.userId, p]));
+console.log(us.map(u => ({ ...u, preferences: pm64[u.id] || { theme: 'light' } })));
+
+const o65a = [{ id: 1, name: 'A' }];
+const o65b = [{ id: 1, name: 'Aman' }];
+const m65a = Object.fromEntries(o65a.map(u => [u.id, u]));
+const m65b = Object.fromEntries(o65b.map(u => [u.id, u]));
+console.log(Object.keys(m65b).reduce((a, id) => {
+  const k = Object.keys(m65b[id]).filter(f => m65b[id][f] !== m65a[id]?.[f]);
+  if (k.length) a.push({ id: +id, changedFields: k });
+  return a;
+}, []));
