@@ -23,3 +23,13 @@ db.orders.aggregate([
     }
   }
 ])
+db.orders.aggregate([
+  {
+    $group: {
+      _id: "$category",
+      total_earnings: {
+        $sum: { $multiply: ["$price", "$quantity"] }
+      }
+    }
+  }
+])
