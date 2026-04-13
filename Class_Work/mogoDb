@@ -1,0 +1,8 @@
+db.orders.aggregate([
+  {
+    $group: {
+      _id: null,
+      total_earnings: { $sum: { $multiply: ["$price", "$quantity"] } }
+    }
+  }
+])
