@@ -10,3 +10,16 @@ db.orders.aggregate([
   _id: null,
   total_earnings: 2100
 }
+db.orders.aggregate([
+  {
+    $match: { status: "delivered" }
+  },
+  {
+    $group: {
+      _id: null,
+      total_earnings: { 
+        $sum: { $multiply: ["$price", "$quantity"] }
+      }
+    }
+  }
+])
