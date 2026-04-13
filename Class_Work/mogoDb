@@ -33,3 +33,14 @@ db.orders.aggregate([
     }
   }
 ])
+
+db.orders.aggregate([
+  {
+    $group: {
+      _id: "$userId",
+      total_earnings: {
+        $sum: { $multiply: ["$price", "$quantity"] }
+      }
+    }
+  }
+])
