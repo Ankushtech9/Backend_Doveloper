@@ -6,3 +6,7 @@ db.orders.aggregate([
     }
   }
 ])
+{
+  _id: null,
+  total_earnings: 2100
+}
