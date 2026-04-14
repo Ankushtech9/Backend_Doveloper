@@ -14,3 +14,11 @@ app.get("/user/:id",(req,res)=>{
   const user=users.find(u=>u.id==req.params.id);
   res.json(user);
 })
+app.post("/write",(req,res)=>{
+  const newuser={
+    name:req.body.name,
+    age:req.body.age
+  }
+  users.push(newuser);
+  res.json(newuser);
+})
