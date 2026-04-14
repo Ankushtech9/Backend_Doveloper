@@ -1,0 +1,16 @@
+const express=require("express");
+const app=express();
+let users=[
+  {
+    "hello":"ankush",
+    "age":22
+
+}
+]
+app.get("/",(req,res)=>{
+  res.json(users);
+})
+app.get("/user/:id",(req,res)=>{
+  const user=users.find(u=>u.id==req.params.id);
+  res.json(user);
+})
