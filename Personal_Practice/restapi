@@ -27,3 +27,11 @@ const user=users.find(u=>u.id==req.params.id);
  user.name=req.body.name;
   res.json(user);
 })
+app.delete("/delete/:id",(req,res)=>{
+  const user=users.filter(u=>u.id!=req.params.id);
+  res.send("user delted");
+})
+app.listen(3000,()=>{
+  console.log("server on");
+})
+
