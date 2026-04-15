@@ -1,0 +1,56 @@
+db.orders.aggregate([
+  {
+    $group: {
+      _id: null,
+      total_earnings: { $sum: { $multiply: ["$price", "$quantity"] } }
+    }
+  }
+])
+{
+  _id: null,
+  total_earnings: 2100
+}
+db.orders.aggregate([
+  {
+    $match: { status: "delivered" }
+  },
+  {
+    $group: {
+      _id: null,
+      total_earnings: { 
+        $sum: { $multiply: ["$price", "$quantity"] }
+      }
+    }
+  }
+])
+db.orders.aggregate([
+  {
+    $group: {
+      _id: "$category",
+      total_earnings: {
+        $sum: { $multiply: ["$price", "$quantity"] }
+      }
+    }
+  }
+])
+
+db.orders.aggregate([
+  {
+    $group: {
+      _id: "$userId",
+      total_earnings: {
+        $sum: { $multiply: ["$price", "$quantity"] }
+      }
+    }
+  }
+])
+db.orders.aggregate([
+  {
+    $group: {
+      _id: "$createdAt",
+      total_earnings: {
+        $sum: { $multiply: ["$price", "$quantity"] }
+      }
+    }
+  }
+])
