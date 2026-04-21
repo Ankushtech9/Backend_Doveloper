@@ -21,3 +21,15 @@ app.post("/login",(req,res)=>{
             user=JSON.parse(data);
         }
         user.push(newuser);
+  fs.writeFile("notes.json",JSON.stringify(user,null,2),(err)=>{
+
+    if(err){
+        console.log("err");
+    }else{
+        res.send("submit");
+    }
+    });
+    });
+    
+    
+})
