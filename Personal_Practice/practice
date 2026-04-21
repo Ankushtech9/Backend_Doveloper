@@ -15,3 +15,9 @@ app.post("/login",(req,res)=>{
         name:req.body.name,
         password:req.body.password
     }
+ fs.readFile("notes.json","utf-8",(err,data)=>{
+        let user=[];
+        if(!err && data){
+            user=JSON.parse(data);
+        }
+        user.push(newuser);
