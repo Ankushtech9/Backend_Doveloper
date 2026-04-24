@@ -1,0 +1,10 @@
+const express=require("express");
+const router=express.Router();
+const User=require("../models/User"); // app-chat app, backend doveoper- practice auth.,
+const bcrypt=require("bcryptjs");
+const jwt=require("jsonwebtoken");
+
+// Register Page
+router.get("/register", (req,res) => {
+res.render("register");
+});
