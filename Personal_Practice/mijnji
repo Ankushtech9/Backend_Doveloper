@@ -105,3 +105,90 @@
       padding: 30px;
       box-shadow: var(--card-shadow);
       transition: var(--transitio
+ }
+
+    .bento-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
+
+    /* --- FORMS --- */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      border-radius: var(--radius-apple);
+      padding: 40px;
+      max-width: 800px;
+      margin: 0 auto;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: var(--card-shadow);
+    }
+
+    .input-wrapper {
+      background: #f2f2f7;
+      border-radius: 18px;
+      margin-bottom: 20px;
+      padding: 12px 20px;
+      border: 2px solid transparent;
+      transition: var(--transition);
+    }
+
+    .input-wrapper:focus-within {
+      background: white;
+      border-color: var(--primary);
+    }
+
+    label { font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px; display: block; }
+
+    textarea, input, select {
+      width: 100%; border: none; background: transparent; font-family: inherit; font-size: 16px; outline: none; color: var(--text-main);
+    }
+
+    .btn-apple {
+      background: var(--text-main); color: white; padding: 18px 32px; border-radius: 50px; border: none; font-weight: 600; cursor: pointer; transition: var(--transition);
+      display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%;
+    }
+
+    .btn-apple:hover { transform: scale(1.02); background: #000; }
+
+    /* --- RESULTS & BADGES --- */
+    .urgency-badge { padding: 6px 16px; border-radius: 50px; font-weight: 700; font-size: 12px; }
+    .urgency-LOW { background: #dcfce7; color: #166534; }
+    .urgency-MEDIUM { background: #fef9c3; color: #854d0e; }
+    .urgency-HIGH { background: #fee2e2; color: #991b1b; }
+
+    .issue-row {
+      display: flex; align-items: center; gap: 20px; background: white; padding: 20px; border-radius: 20px; margin-bottom: 12px;
+    }
+
+    /* --- LIBRARY --- */
+    .library-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 30px;
+    }
+    .library-card {
+        background: white; padding: 25px; border-radius: 24px; border: 1px solid #eee;
+    }
+    .tag {
+        font-size: 10px; background: #f2f2f7; padding: 4px 8px; border-radius: 4px; font-weight: bold; margin-bottom: 10px; display: inline-block;
+    }
+
+    /* --- SPINNER --- */
+    .spinner {
+      width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid var(--primary);
+      border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px;
+    }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+
+  <nav class="sidebar">
+    <div class="logo">
+      <div style="background: var(--primary); padding: 6px; border-radius: 10px;"><i data-lucide="plus" color="white" size="20"></i></div>
+      RuralDoc AI
+    </div>
+    
+    <div class="nav-item active" onclick="showPage('page-home', this)"><i data-lucide="layout-grid"></i> Dashboard</div>
+    <div class="nav-item" onclick="showPage('page-checker', this)"><i data-lucide="activity"></i> Symptom Checker</div>
+    <div class="nav-item" onclick="showPage('page-library', this)"><i data-lucide="book-open"></i> Health Library</div>
+    <div class="nav-item" oncli
